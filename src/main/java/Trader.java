@@ -40,17 +40,28 @@ public class Trader<T> {
      *       empty ArrayLists for their inventory and wishlist.
      */
 
-
-
-
+    /**
+     * Construct a Trader, giving them an empty inventory, wishlist
+     * and the given amount of money.
+     * @param money The Trader's money.
+     */
+    public Trader(int money) {
+        this.inventory = new ArrayList<>();
+        this.wishlist = new ArrayList<>();
+        this.money = money;
+    }
 
     /* TODO: Implement the method addToWishlist that takes an
      *       object of type T and adds it to this Trader's wishlist.
      */
 
-
-
-
+    /**
+     * Add the given item to this Trader's wishlist.
+     * @param item The item to add to the Trader's wishlist.
+     */
+    public void addToWishlist(T item) {
+        this.wishlist.add(item);
+    }
 
     /* TODO: Implement the method getSellingPrice that takes an
      *       object of type T and returns the object's price
@@ -60,9 +71,17 @@ public class Trader<T> {
      *       We will call this in exchangeMoney().
      */
 
-
-
-
+    /**
+     * Get the selling price of the given item.
+     * @param item The item to get the selling price for.
+     * @return The selling price of the item or Tradable.MISSING_PRICE if the item is not Tradable.
+     */
+    public int getSellingPrice(T item) {
+        if (item instanceof Tradable) {
+            return ((Tradable) item).getPrice();
+        }
+        return Tradable.MISSING_PRICE;
+    }
 
     /**
      * Exchange money from other to this Trader according to the price of item,
